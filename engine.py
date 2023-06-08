@@ -48,20 +48,15 @@ def strip_special_characters(string):
 
 def generate_firing_order_inline(cylinders):
     if cylinders < 2:
-        return "Invalid number of cylinders. Minimum of 2 cylinders required."
+        print("You need at least 2 cylinders to generate a firing order")
+        return
+    firing_order = []
 
-    if cylinders % 2 != 0:
-        firing_order = [1]
-        for i in range(3, cylinders + 1, 2):
-            firing_order.append(i)
-        firing_order.append(2)
-    else:
-        adjusted_cylinders = cylinders - 1
-        firing_order = [2]
-        for i in range(4, adjusted_cylinders + 1, 2):
-            firing_order.insert(0, i)
-        firing_order.append(1)
-        firing_order.append(cylinders)
+    for i in range(1, cylinders + 1, 2):
+        firing_order.append(i)
+
+    for i in range(2, cylinders + 1, 2):
+        firing_order.append(i)
 
     return firing_order
 
@@ -84,7 +79,9 @@ def generate_firing_order_v(cylinders):
         else:
             left_bank.append(cylinders)
     
-    return left_bank + right_bank, left_bank, right_bank
+    firing_order = left_bank + right_bank
+    
+    return firing_order, left_bank, right_bank
 
 def generate_inline(cylinderCount, fuel_type):
     print("Generating inline style engine...")
@@ -158,5 +155,35 @@ def generate_custom_engine():
     elif style.lower() == "v":
         generate_v(cylinderCount, fuel_type)
 
+def generate_inline_test_engine(cylinderCount, fuel_type, name):
+    print("Generating inline test engine...")
+    cylinders = generate_firing_order_inline(cylinderCount)
+
+    print(f"Firing order: {cylinders}")
+
+    cylinders0 = []
+
+    for i in range(1, cylinderCount + 1):
+        cylinders0.append(i)
+    
+    print(f"cylinders0: {cylinders0}")
+
+    bank = engine_generator.Bank(cylinders0, 0)
+    engine = engine_generator.Engine([bank], cylinders, fuel_type)
+    engine.engine_name = name
+    engine.starter_torque = 800
+    engine.crank_mass = 60
+    engine.bore = 60
+    engine.stroke = 60
+    engine.chamber_volume = 600
+    engine.rod_length = 110
+    engine.simulation_frequency = 1200
+    engine.max_sle_solver_steps = 4
+    engine.fluid_simulation_steps = 4
+    engine.idle_throttle_plate_position = 0.9
+
+    engine.generate()
+    engine.write_to_file(strip_special_characters(engine.engine_name) + ".mr")
+
 if __name__ == "__main__":
-    generate_custom_engine()
+    generate_inline_test_engine(4, engine_generator.hydrogen, "I4 Test")
