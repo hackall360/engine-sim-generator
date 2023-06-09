@@ -1,8 +1,20 @@
 import random
 import io
 
+
 class Fuel:
-    def __init__(self, molecular_mass, energy_density, density, molecular_afr, max_burning_efficiency, burning_efficiency_randomness, low_efficiency_attenuation, max_turbulence_effect, max_dilution_effect):
+    def __init__(
+        self,
+        molecular_mass,
+        energy_density,
+        density,
+        molecular_afr,
+        max_burning_efficiency,
+        burning_efficiency_randomness,
+        low_efficiency_attenuation,
+        max_turbulence_effect,
+        max_dilution_effect,
+    ):
         self.molecular_mass = molecular_mass
         self.energy_density = energy_density
         self.density = density
@@ -24,6 +36,7 @@ class Fuel:
             max_turbulence_effect: {self.max_turbulence_effect},
             max_dilution_effect: {self.max_dilution_effect}"""
 
+
 # Gasoline Regular
 gasoline_regular = Fuel(
     molecular_mass=114.23,
@@ -34,7 +47,7 @@ gasoline_regular = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
 
 # Gasoline Midgrade
@@ -47,7 +60,7 @@ gasoline_midgrade = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
 
 # Gasoline Premium
@@ -60,7 +73,7 @@ gasoline_premium = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
 
 # Hexane
@@ -73,7 +86,7 @@ hexane = Fuel(
     burning_efficiency_randomness=0.4,
     low_efficiency_attenuation=0.7,
     max_turbulence_effect=1.5,
-    max_dilution_effect=5
+    max_dilution_effect=5,
 )
 
 # High Octane Fuel
@@ -86,7 +99,7 @@ high_octane = Fuel(
     burning_efficiency_randomness=0.5,
     low_efficiency_attenuation=0.6,
     max_turbulence_effect=2,
-    max_dilution_effect=10
+    max_dilution_effect=10,
 )
 
 # Pure Octane Fuel
@@ -99,7 +112,7 @@ pure_octane = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
 
 # Hydrogen
@@ -112,7 +125,7 @@ hydrogen = Fuel(
     burning_efficiency_randomness=0.1,
     low_efficiency_attenuation=0.2,
     max_turbulence_effect=1,
-    max_dilution_effect=2
+    max_dilution_effect=2,
 )
 
 # Oxygen
@@ -125,7 +138,7 @@ oxygen = Fuel(
     burning_efficiency_randomness=0.0,
     low_efficiency_attenuation=0.0,
     max_turbulence_effect=0,
-    max_dilution_effect=0
+    max_dilution_effect=0,
 )
 
 # Hydrogen-Oxygen Mix
@@ -138,7 +151,7 @@ hydrogen_oxygen = Fuel(
     burning_efficiency_randomness=0.2,
     low_efficiency_attenuation=0.4,
     max_turbulence_effect=1.5,
-    max_dilution_effect=5
+    max_dilution_effect=5,
 )
 
 # Hydrazine
@@ -151,7 +164,7 @@ hydrazine = Fuel(
     burning_efficiency_randomness=0.6,
     low_efficiency_attenuation=0.8,
     max_turbulence_effect=1.2,
-    max_dilution_effect=4
+    max_dilution_effect=4,
 )
 
 # Ethanol
@@ -164,7 +177,7 @@ ethanol = Fuel(
     burning_efficiency_randomness=0.4,
     low_efficiency_attenuation=0.7,
     max_turbulence_effect=1.5,
-    max_dilution_effect=5
+    max_dilution_effect=5,
 )
 
 # Isopropyl Alcohol
@@ -177,7 +190,7 @@ isopropyl_alcohol = Fuel(
     burning_efficiency_randomness=0.5,
     low_efficiency_attenuation=0.6,
     max_turbulence_effect=2,
-    max_dilution_effect=10
+    max_dilution_effect=10,
 )
 
 # Butyl Alcohol
@@ -190,7 +203,7 @@ butyl_alcohol = Fuel(
     burning_efficiency_randomness=0.4,
     low_efficiency_attenuation=0.7,
     max_turbulence_effect=1.5,
-    max_dilution_effect=5
+    max_dilution_effect=5,
 )
 
 # Kerosene
@@ -203,7 +216,7 @@ kerosene = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
 
 # NOS Fuel
@@ -216,7 +229,7 @@ nos = Fuel(
     burning_efficiency_randomness=0,
     low_efficiency_attenuation=0,
     max_turbulence_effect=0,
-    max_dilution_effect=0
+    max_dilution_effect=0,
 )
 
 # Fuel Mixture (Average of Pure Octane and NOS)
@@ -225,11 +238,23 @@ nos_octane = Fuel(
     energy_density=(pure_octane.energy_density + nos.energy_density) / 2,
     density=(pure_octane.density + nos.density) / 2,
     molecular_afr=(pure_octane.molecular_afr + nos.molecular_afr) / 2,
-    max_burning_efficiency=(pure_octane.max_burning_efficiency + nos.max_burning_efficiency) / 2,
-    burning_efficiency_randomness=(pure_octane.burning_efficiency_randomness + nos.burning_efficiency_randomness) / 2,
-    low_efficiency_attenuation=(pure_octane.low_efficiency_attenuation + nos.low_efficiency_attenuation) / 2,
-    max_turbulence_effect=(pure_octane.max_turbulence_effect + nos.max_turbulence_effect) / 2,
-    max_dilution_effect=(pure_octane.max_dilution_effect + nos.max_dilution_effect) / 2
+    max_burning_efficiency=(
+        pure_octane.max_burning_efficiency + nos.max_burning_efficiency
+    )
+    / 2,
+    burning_efficiency_randomness=(
+        pure_octane.burning_efficiency_randomness + nos.burning_efficiency_randomness
+    )
+    / 2,
+    low_efficiency_attenuation=(
+        pure_octane.low_efficiency_attenuation + nos.low_efficiency_attenuation
+    )
+    / 2,
+    max_turbulence_effect=(
+        pure_octane.max_turbulence_effect + nos.max_turbulence_effect
+    )
+    / 2,
+    max_dilution_effect=(pure_octane.max_dilution_effect + nos.max_dilution_effect) / 2,
 )
 
 # Diesel Fuel
@@ -242,12 +267,14 @@ diesel = Fuel(
     burning_efficiency_randomness=0.3,
     low_efficiency_attenuation=0.5,
     max_turbulence_effect=1.8,
-    max_dilution_effect=8
+    max_dilution_effect=8,
 )
+
 
 class Camshaft:
     def __init__(self):
         self.lobes = []
+
 
 class Bank:
     def __init__(self, cylinder_numbers, bank_angle):
@@ -262,12 +289,14 @@ class Bank:
     def get_cylinder_index(self, cylinder):
         return self.cylinders.index(cylinder)
 
+
 class Transmission:
     def __init__(self, gears):
         self.gears = gears
         self.node_name = "generated_transmission"
 
         self.max_clutch_torque = 1000
+
 
 class Vehicle:
     def __init__(self):
@@ -276,15 +305,16 @@ class Vehicle:
         self.mass = 798
         self.drag_coefficient = 0.9
         self.cross_sectional_area = [72, 36]
-        
+
         self.diff_ratio = 4.10
         self.tire_radius = 9
         self.rolling_resistance = 200
 
+
 class Engine:
-    def __init__(self, banks, firing_order, fuel_type):
+    def __init__(self, banks, firing_order):
         self.banks = banks
-        self.fuel = fuel_type
+        self.fuel = gasoline_regular
         self.starter_torque = 70
         self.starter_speed = 500
         self.redline = 8000
@@ -340,8 +370,8 @@ class Engine:
         self.exhaust_runner_volume = 50.0
         self.exhaust_runner_cross_section = [1.75, 1.75]
 
-        self.intake_flow = [0,58,103,156,214,249,268,280,280,281]
-        self.exhaust_flow = [0,37,72,113,160,196,222,235,245,246]
+        self.intake_flow = [0, 58, 103, 156, 214, 249, 268, 280, 280, 281]
+        self.exhaust_flow = [0, 37, 72, 113, 160, 196, 222, 235, 245, 246]
 
         self.rod_journals = None
         self.firing_order = firing_order
@@ -354,18 +384,18 @@ class Engine:
         self.engine_sim_version = [0, 1, 12, 2]
 
         self.timing_curve = [
-            [0,18],
-            [1000,40],
-            [2000,40],
-            [3000,40],
-            [4000,40],
-            [5000,40],
-            [6000,40],
-            [7000,40],
-            [8000,40],
-            [9000,40],
+            [0, 18],
+            [1000, 40],
+            [2000, 40],
+            [3000, 40],
+            [4000, 40],
+            [5000, 40],
+            [6000, 40],
+            [7000, 40],
+            [8000, 40],
+            [9000, 40],
         ]
-        
+
         self.rev_limit = self.redline + 1000
         self.limiter_duration = 0.1
 
@@ -376,9 +406,9 @@ class Engine:
         for bank in self.banks:
             if cylinder in bank.cylinders:
                 return bank
-            
+
         return None
-    
+
     def tdc(self):
         return 90 + self.banks[0].bank_angle
 
@@ -389,14 +419,11 @@ class Engine:
         current_crank_angle = 0
 
         self.rod_journals = [0] * n_cylinders
-        for index, cylinder in enumerate(self.firing_order):
+        for cylinder in self.firing_order:
             bank = self.get_cylinder_bank(cylinder)
             bank_angle = bank.bank_angle + 90
-            if index < n_cylinders:
-                self.rod_journals[index] = (-current_crank_angle) + bank_angle - tdc
+            self.rod_journals[cylinder] = (-current_crank_angle) + bank_angle - tdc
             current_crank_angle -= gap
-
-
 
     def cylinder_count(self):
         n = 0
@@ -421,7 +448,8 @@ class Engine:
         self.generate_camshafts()
 
     def write_head(self, file):
-        file.write("""private node {} {{
+        file.write(
+            """private node {} {{
     input intake_camshaft;
     input exhaust_camshaft;
     input chamber_volume: {} * units.cc;
@@ -436,28 +464,41 @@ class Engine:
     alias output __out: head;
 
     function intake_flow(50 * units.thou)
-    intake_flow""".format(self.cylinder_head_node_name,
-           self.chamber_volume,
-           self.intake_runner_volume,
-           self.intake_runner_cross_section[0],
-           self.intake_runner_cross_section[1],
-           self.exhaust_runner_volume,
-           self.exhaust_runner_cross_section[0],
-           self.exhaust_runner_cross_section[1]
-           ))
-        
+    intake_flow""".format(
+                self.cylinder_head_node_name,
+                self.chamber_volume,
+                self.intake_runner_volume,
+                self.intake_runner_cross_section[0],
+                self.intake_runner_cross_section[1],
+                self.exhaust_runner_volume,
+                self.exhaust_runner_cross_section[0],
+                self.exhaust_runner_cross_section[1],
+            )
+        )
+
         for i in range(len(self.intake_flow)):
             file.write("\n")
-            file.write("    .add_flow_sample({} * lift_scale, {} * flow_attenuation)".format(i * 50, self.intake_flow[i]))
+            file.write(
+                "    .add_flow_sample({} * lift_scale, {} * flow_attenuation)".format(
+                    i * 50, self.intake_flow[i]
+                )
+            )
 
-        file.write("""\n\n    function exhaust_flow(50 * units.thou)
-    exhaust_flow""")
-        
+        file.write(
+            """\n\n    function exhaust_flow(50 * units.thou)
+    exhaust_flow"""
+        )
+
         for i in range(len(self.exhaust_flow)):
             file.write("\n")
-            file.write("    .add_flow_sample({} * lift_scale, {} * flow_attenuation)".format(i * 50, self.exhaust_flow[i]))
+            file.write(
+                "    .add_flow_sample({} * lift_scale, {} * flow_attenuation)".format(
+                    i * 50, self.exhaust_flow[i]
+                )
+            )
 
-        file.write("""\n\n    generic_cylinder_head head(
+        file.write(
+            """\n\n    generic_cylinder_head head(
         chamber_volume: chamber_volume,
         intake_runner_volume: intake_runner_volume,
         intake_runner_cross_section_area: intake_runner_cross_section_area,
@@ -473,10 +514,12 @@ class Engine:
         flip_display: flip_display
     )
 }\n
-""")
-        
+"""
+        )
+
     def write_camshaft(self, file):
-        file.write("""private node {} {{
+        file.write(
+            """private node {} {{
     input lobe_profile;
     input intake_lobe_profile: lobe_profile;
     input exhaust_lobe_profile: lobe_profile;
@@ -484,45 +527,74 @@ class Engine:
     input intake_lobe_center: lobe_separation;
     input exhaust_lobe_center: lobe_separation;  
     input advance: 0 * units.deg; 
-    input base_radius: {} * units.inch;""".format(self.camshaft_node_name, self.lobe_separation, self.camshaft_base_radius))
+    input base_radius: {} * units.inch;""".format(
+                self.camshaft_node_name, self.lobe_separation, self.camshaft_base_radius
+            )
+        )
 
         for index, bank in enumerate(self.banks):
             file.write("\n")
-            file.write("    output intake_cam_{}: _intake_cam_{};\n".format(index, index))
-            file.write("    output exhaust_cam_{}: _exhaust_cam_{};\n".format(index, index))
+            file.write(
+                "    output intake_cam_{}: _intake_cam_{};\n".format(index, index)
+            )
+            file.write(
+                "    output exhaust_cam_{}: _exhaust_cam_{};\n".format(index, index)
+            )
 
         file.write(
-"""    camshaft_parameters params (
+            """    camshaft_parameters params (
         advance: advance,
         base_radius: base_radius
     )
-""")
-        
+"""
+        )
+
         for index, bank in enumerate(self.banks):
             file.write("\n")
-            file.write("    camshaft _intake_cam_{}(params, lobe_profile: intake_lobe_profile)\n".format(index))
-            file.write("    camshaft _exhaust_cam_{}(params, lobe_profile: exhaust_lobe_profile)\n".format(index))
+            file.write(
+                "    camshaft _intake_cam_{}(params, lobe_profile: intake_lobe_profile)\n".format(
+                    index
+                )
+            )
+            file.write(
+                "    camshaft _exhaust_cam_{}(params, lobe_profile: exhaust_lobe_profile)\n".format(
+                    index
+                )
+            )
 
         file.write("    label rot360(360 * units.deg)\n")
-    
+
         for index, bank in enumerate(self.banks):
             file.write("    _exhaust_cam_{}\n".format(index))
             for lobe in bank.camshaft.lobes:
-                file.write("        .add_lobe(rot360 - exhaust_lobe_center + {} * units.deg)\n".format(lobe))
+                file.write(
+                    "        .add_lobe(rot360 - exhaust_lobe_center + {} * units.deg)\n".format(
+                        lobe
+                    )
+                )
 
             file.write("    _intake_cam_{}\n".format(index))
             for lobe in bank.camshaft.lobes:
-                file.write("        .add_lobe(rot360 + exhaust_lobe_center + {} * units.deg)\n".format(lobe))
+                file.write(
+                    "        .add_lobe(rot360 + exhaust_lobe_center + {} * units.deg)\n".format(
+                        lobe
+                    )
+                )
 
         file.write("}\n")
 
     def write_engine(self, file):
-        file.write("""\npublic node {} {{
+        file.write(
+            """\npublic node {} {{
     alias output __out: engine;
 
-""".format(self.node_name))
-        
-        file.write("""    engine engine(
+""".format(
+                self.node_name
+            )
+        )
+
+        file.write(
+            """    engine engine(
         name: "{}",
         starter_torque: {} * units.lb_ft,
         starter_speed: {} * units.rpm,
@@ -535,17 +607,34 @@ class Engine:
         noise: {},
         jitter: {},
         simulation_frequency: {}
-    """.format(self.engine_name, self.starter_torque, self.starter_speed, self.redline, self.throttle_gamma, self.fuel.generate(), self.hf_gain, self.noise, self.jitter, self.simulation_frequency))
-        
+    """.format(
+                self.engine_name,
+                self.starter_torque,
+                self.starter_speed,
+                self.redline,
+                self.throttle_gamma,
+                self.fuel.generate(),
+                self.hf_gain,
+                self.noise,
+                self.jitter,
+                self.simulation_frequency,
+            )
+        )
+
         if self.engine_sim_version[2] >= 13:
-            file.write(""",
+            file.write(
+                """,
         fluid_simulation_steps: {},
         max_sle_solver_steps: {}
-        """, self.max_sle_solver_steps, self.fluid_simulation_steps)
+        """,
+                self.max_sle_solver_steps,
+                self.fluid_simulation_steps,
+            )
 
         file.write(")\n\n    wires wires()\n")
 
-        file.write("""
+        file.write(
+            """
     label stroke({} * units.mm)
     label bore({} * units.mm)
     label rod_length({} * units.mm)
@@ -563,9 +652,20 @@ class Engine:
     )
     label other_moment( // Moment from cams, pulleys, etc [estimated]
         disk_moment_of_inertia(mass: 1 * units.kg, radius: 1.0 * units.cm)
-    )""".format(self.stroke, self.bore, self.rod_length, self.rod_mass, self.compression_height, self.crank_mass, self.flywheel_mass, self.flywheel_radius))
+    )""".format(
+                self.stroke,
+                self.bore,
+                self.rod_length,
+                self.rod_mass,
+                self.compression_height,
+                self.crank_mass,
+                self.flywheel_mass,
+                self.flywheel_radius,
+            )
+        )
 
-        file.write("""\n\n    crankshaft c0(
+        file.write(
+            """\n\n    crankshaft c0(
         throw: stroke / 2,
         flywheel_mass: flywheel_mass,
         mass: crank_mass,
@@ -575,11 +675,16 @@ class Engine:
         position_x: 0.0,
         position_y: 0.0,
         tdc: {} * units.deg
-    )\n""".format(self.tdc()))
-        
+    )\n""".format(
+                self.tdc()
+            )
+        )
+
         file.write("\n")
         for index, journal in enumerate(self.rod_journals):
-            file.write("    rod_journal rj{}(angle: {} * units.deg)\n".format(index, journal))
+            file.write(
+                "    rod_journal rj{}(angle: {} * units.deg)\n".format(index, journal)
+            )
 
         file.write("    c0\n")
         for index, journal in enumerate(self.rod_journals):
@@ -587,14 +692,19 @@ class Engine:
 
         file.write("\n")
 
-        file.write("""    piston_parameters piston_params(
+        file.write(
+            """    piston_parameters piston_params(
         mass: ({}) * units.g, // 414 - piston mass, 152 - pin weight
         compression_height: compression_height,
         wrist_pin_position: 0.0,
         displacement: 0.0
-    )\n\n""".format(self.piston_mass))
+    )\n\n""".format(
+                self.piston_mass
+            )
+        )
 
-        file.write("""    connecting_rod_parameters cr_params(
+        file.write(
+            """    connecting_rod_parameters cr_params(
         mass: rod_mass,
         moment_of_inertia: rod_moment_of_inertia(
             mass: rod_mass,
@@ -602,9 +712,11 @@ class Engine:
         ),
         center_of_mass: 0.0,
         length: rod_length
-    )\n""")
-        
-        file.write("""    intake intake(
+    )\n"""
+        )
+
+        file.write(
+            """    intake intake(
         plenum_volume: {} * units.L,
         plenum_cross_section_area: {} * units.cm2,
         intake_flow_rate: k_carb({}),
@@ -613,37 +725,59 @@ class Engine:
         idle_flow_rate: k_carb({}),
         idle_throttle_plate_position: {},
         velocity_decay: 0.5
-    )\n""".format(self.plenum_volume, self.plenum_cross_section_area, self.intake_flow_rate, self.runner_flow_rate, self.runner_length, self.idle_flow_rate, self.idle_throttle_plate_position))
+    )\n""".format(
+                self.plenum_volume,
+                self.plenum_cross_section_area,
+                self.intake_flow_rate,
+                self.runner_flow_rate,
+                self.runner_length,
+                self.idle_flow_rate,
+                self.idle_throttle_plate_position,
+            )
+        )
 
-        file.write("""    exhaust_system_parameters es_params(
+        file.write(
+            """    exhaust_system_parameters es_params(
         outlet_flow_rate: k_carb(2000.0),
         primary_tube_length: 20.0 * units.inch,
         primary_flow_rate: k_carb(200.0),
         velocity_decay: 0.5
-    )\n""")
-        
+    )\n"""
+        )
+
         for index, bank in enumerate(self.banks):
-            file.write("""    exhaust_system exhaust{}(
+            file.write(
+                """    exhaust_system exhaust{}(
         es_params,
         audio_volume: 1.0 * 0.004,
         length: {} * units.inch,
         impulse_response: ir_lib.minimal_muffling_01
-    )\n\n""".format(index, self.exhaust_length))
-            
-        file.write("""    cylinder_bank_parameters bank_params(
+    )\n\n""".format(
+                    index, self.exhaust_length
+                )
+            )
+
+        file.write(
+            """    cylinder_bank_parameters bank_params(
         bore: bore,
         deck_height: stroke / 2 + rod_length + compression_height
-    )\n\n""")
-        
+    )\n\n"""
+        )
+
         file.write("    label spacing(0.0)\n")
 
         for index, bank in enumerate(self.banks):
-            file.write("    cylinder_bank b{}(bank_params, angle: {} * units.deg)\n".format(index, bank.bank_angle))
+            file.write(
+                "    cylinder_bank b{}(bank_params, angle: {} * units.deg)\n".format(
+                    index, bank.bank_angle
+                )
+            )
 
         for index, bank in enumerate(self.banks):
             file.write("    b{}\n".format(index))
             for cylinder_index, cylinder in enumerate(bank.cylinders):
-                file.write("""        .add_cylinder(
+                file.write(
+                    """        .add_cylinder(
             piston: piston(piston_params, blowby: k_28inH2O({})),
             connecting_rod: connecting_rod(cr_params),
             rod_journal: rj{},
@@ -652,15 +786,30 @@ class Engine:
             ignition_wire: wires.wire{},
             sound_attenuation: {},
             primary_length: {} * spacing * 0.5 * units.cm
-        )\n""".format(self.piston_blowby, cylinder, index, cylinder, random.uniform(0.5, 1.0), cylinder_index))
-                
-            file.write("""        .set_cylinder_head(
+        )\n""".format(
+                        self.piston_blowby,
+                        cylinder,
+                        index,
+                        cylinder,
+                        random.uniform(0.5, 1.0),
+                        cylinder_index,
+                    )
+                )
+
+            file.write(
+                """        .set_cylinder_head(
             {}(
                 intake_camshaft: camshaft.intake_cam_{},
                 exhaust_camshaft: camshaft.exhaust_cam_{},
                 flip_display: {},
                 flow_attenuation: 1.0)
-        )\n\n""".format(self.cylinder_head_node_name, index, index, "true" if bank.flip else "false"))
+        )\n\n""".format(
+                    self.cylinder_head_node_name,
+                    index,
+                    index,
+                    "true" if bank.flip else "false",
+                )
+            )
 
         file.write("    engine\n")
         for index, bank in enumerate(self.banks):
@@ -669,7 +818,8 @@ class Engine:
 
         file.write("    engine.add_crankshaft(c0)\n\n")
 
-        file.write("""    harmonic_cam_lobe intake_lobe(
+        file.write(
+            """    harmonic_cam_lobe intake_lobe(
         duration_at_50_thou: {} * units.deg,
         gamma: {},
         lift: {} * units.thou,
@@ -681,40 +831,71 @@ class Engine:
         gamma: {},
         lift: {} * units.thou,
         steps: {}
-    )\n\n""".format(self.intake_lobe_duration, self.intake_lobe_gamma, self.intake_lobe_lift, self.intake_lobe_steps, self.exhaust_lobe_duration, self.exhaust_lobe_gamma, self.exhaust_lobe_lift, self.exhaust_lobe_steps))
-        
-        file.write("""    {} camshaft(
+    )\n\n""".format(
+                self.intake_lobe_duration,
+                self.intake_lobe_gamma,
+                self.intake_lobe_lift,
+                self.intake_lobe_steps,
+                self.exhaust_lobe_duration,
+                self.exhaust_lobe_gamma,
+                self.exhaust_lobe_lift,
+                self.exhaust_lobe_steps,
+            )
+        )
+
+        file.write(
+            """    {} camshaft(
         lobe_profile: "N/A",
 
         intake_lobe_profile: intake_lobe,
         exhaust_lobe_profile: exhaust_lobe,
         intake_lobe_center: {} * units.deg,
         exhaust_lobe_center: {} * units.deg
-    )\n\n""".format(self.camshaft_node_name, self.intake_lobe_center, self.exhaust_lobe_center))
-        
-        file.write("""    function timing_curve(1000 * units.rpm)
-    timing_curve""")
+    )\n\n""".format(
+                self.camshaft_node_name,
+                self.intake_lobe_center,
+                self.exhaust_lobe_center,
+            )
+        )
+
+        file.write(
+            """    function timing_curve(1000 * units.rpm)
+    timing_curve"""
+        )
         for point in self.timing_curve:
             file.write("\n")
-            file.write("        .add_sample({} * units.rpm, {} * units.deg)".format(point[0], point[1]))
+            file.write(
+                "        .add_sample({} * units.rpm, {} * units.deg)".format(
+                    point[0], point[1]
+                )
+            )
 
         file.write("\n\n")
 
-        file.write("""    ignition_module ignition_module(
+        file.write(
+            """    ignition_module ignition_module(
         timing_curve: timing_curve,
         rev_limit: {} * units.rpm,
-        limiter_duration: 0.1)\n\n""".format(self.rev_limit, self.limiter_duration))
+        limiter_duration: 0.1)\n\n""".format(
+                self.rev_limit, self.limiter_duration
+            )
+        )
 
         file.write("    ignition_module\n")
         for index, cylinder in enumerate(self.firing_order):
-            file.write("            .connect_wire(wires.wire{}, {} * units.deg)\n".format(cylinder, 720 * (index / len(self.firing_order))))
+            file.write(
+                "            .connect_wire(wires.wire{}, {} * units.deg)\n".format(
+                    cylinder, 720 * (index / len(self.firing_order))
+                )
+            )
 
         file.write("\n    engine.add_ignition_module(ignition_module)\n")
 
         file.write("}\n\n")
 
     def write_vehicle_transmission(self, file):
-        file.write("""private node {} {{
+        file.write(
+            """private node {} {{
     alias output __out:
         vehicle(
             mass: {} * units.kg,
@@ -725,30 +906,36 @@ class Engine:
             rolling_resistance: {} * units.N
         );
 }}\n\n""".format(
-            self.vehicle.node_name,
-            self.vehicle.mass,
-            self.vehicle.drag_coefficient,
-            self.vehicle.cross_sectional_area[0],
-            self.vehicle.cross_sectional_area[1],
-            self.vehicle.diff_ratio,
-            self.vehicle.tire_radius,
-            self.vehicle.rolling_resistance
-            ))
-        
-        file.write("""private node {} {{
+                self.vehicle.node_name,
+                self.vehicle.mass,
+                self.vehicle.drag_coefficient,
+                self.vehicle.cross_sectional_area[0],
+                self.vehicle.cross_sectional_area[1],
+                self.vehicle.diff_ratio,
+                self.vehicle.tire_radius,
+                self.vehicle.rolling_resistance,
+            )
+        )
+
+        file.write(
+            """private node {} {{
     alias output __out:
         transmission(
             max_clutch_torque: {} * units.lb_ft
-        )""".format(self.transmission.node_name, self.transmission.max_clutch_torque))
-        
+        )""".format(
+                self.transmission.node_name, self.transmission.max_clutch_torque
+            )
+        )
+
         for gear in self.transmission.gears:
             file.write("\n")
             file.write("    .add_gear({})".format(gear))
-        
+
         file.write(";\n}\n\n")
-        
+
     def write_main_node(self, file):
-        file.write("""public node main {{
+        file.write(
+            """public node main {{
     run(
         engine: {}(),
         vehicle: {}(),
@@ -756,17 +943,21 @@ class Engine:
     )
 }}
 
-main()\n""".format(self.node_name, self.vehicle.node_name, self.transmission.node_name))
+main()\n""".format(
+                self.node_name, self.vehicle.node_name, self.transmission.node_name
+            )
+        )
 
     def __write(self, file):
         file.write(
-"""import "engine_sim.mr"
+            """import "engine_sim.mr"
 
 units units()
 constants constants()
 impulse_response_library ir_lib()
             
-""")
+"""
+        )
 
         file.write("private node wires {\n")
         for cylinder in range(self.cylinder_count()):
@@ -778,7 +969,7 @@ impulse_response_library ir_lib()
         self.write_engine(file)
         self.write_vehicle_transmission(file)
         self.write_main_node(file)
-        
+
     def write_to_string(self):
         file = io.StringIO()
         self.__write(file)
@@ -786,7 +977,7 @@ impulse_response_library ir_lib()
 
     def write_to_console(self):
         print(self.write_to_string())
-    
+
     def write_to_file(self, fname):
-        with open(fname, 'w') as file:
+        with open(fname, "w") as file:
             self.__write(file)

@@ -169,7 +169,8 @@ def generate_inline_test_engine(cylinderCount, fuel_type, name):
     print(f"cylinders0: {cylinders0}")
 
     bank = engine_generator.Bank(cylinders0, 0)
-    engine = engine_generator.Engine([bank], cylinders, fuel_type)
+    engine = engine_generator.Engine([bank], cylinders)
+    engine.fuel = fuel_type
     engine.engine_name = name
     engine.starter_torque = 800
     engine.crank_mass = 60
