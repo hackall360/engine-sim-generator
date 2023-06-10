@@ -1,28 +1,27 @@
 
-import engine_generator
 import re
 
-import engine_generator
+import engine_generation
 
 class Fuel_Type:
     fuel_types = {
-        "regular": engine_generator.gasoline_regular,
-        "midgrade": engine_generator.gasoline_midgrade,
-        "premium": engine_generator.gasoline_premium,
-        "hexane": engine_generator.hexane,
-        "high octane": engine_generator.high_octane,
-        "pure octane": engine_generator.pure_octane,
-        "hydrogen": engine_generator.hydrogen,
-        "oxygen": engine_generator.oxygen,
-        "hydrogen oxygen": engine_generator.hydrogen_oxygen,
-        "hydrazine": engine_generator.hydrazine,
-        "ethanol": engine_generator.ethanol,
-        "isopropyl alcohol": engine_generator.isopropyl_alcohol,
-        "butyl alcohol": engine_generator.butyl_alcohol,
-        "kerosene": engine_generator.kerosene,
-        "nos": engine_generator.nos,
-        "nos octane": engine_generator.nos_octane,
-        "diesel": engine_generator.diesel
+        "regular": engine_generation.gasoline_regular,
+        "midgrade": engine_generation.gasoline_midgrade,
+        "premium": engine_generation.gasoline_premium,
+        "hexane": engine_generation.hexane,
+        "high octane": engine_generation.high_octane,
+        "pure octane": engine_generation.pure_octane,
+        "hydrogen": engine_generation.hydrogen,
+        "oxygen": engine_generation.oxygen,
+        "hydrogen oxygen": engine_generation.hydrogen_oxygen,
+        "hydrazine": engine_generation.hydrazine,
+        "ethanol": engine_generation.ethanol,
+        "isopropyl alcohol": engine_generation.isopropyl_alcohol,
+        "butyl alcohol": engine_generation.butyl_alcohol,
+        "kerosene": engine_generation.kerosene,
+        "nos": engine_generation.nos,
+        "nos octane": engine_generation.nos_octane,
+        "diesel": engine_generation.diesel
     }
 
     @staticmethod
@@ -91,8 +90,8 @@ def generate_inline(cylinderCount, fuel_type):
     for i in range(1, cylinderCount + 1):
         cylinders0.append(i)
     
-    bank = engine_generator.Bank(cylinders0, 0)
-    engine = engine_generator.Engine([bank], cylinders, fuel_type)
+    bank = engine_generation.Bank(cylinders0, 0)
+    engine = engine_generation.Engine([bank], cylinders, fuel_type)
     engine.engine_name = input("Engine name: ")
     engine.starter_torque = int(input("Starter torque: "))
     engine.crank_mass = int(input("Crank mass: "))
@@ -112,10 +111,10 @@ def generate_v(cylinderCount, fuel_type):
     print("Generating V style engine...")
     cylinders, cylinders0, cylinders1 = generate_firing_order_v(cylinderCount)
 
-    bank0 = engine_generator.Bank(cylinders0, -45)
-    bank1 = engine_generator.Bank(cylinders1, 45)
+    bank0 = engine_generation.Bank(cylinders0, -45)
+    bank1 = engine_generation.Bank(cylinders1, 45)
 
-    engine = engine_generator.Engine([bank0, bank1], cylinders, fuel_type)
+    engine = engine_generation.Engine([bank0, bank1], cylinders, fuel_type)
     
     engine.engine_name = input("Engine name: ")
     engine.starter_torque = int(input("Starter torque: "))
@@ -168,8 +167,8 @@ def generate_inline_test_engine(cylinderCount, fuel_type, name):
     
     print(f"cylinders0: {cylinders0}")
 
-    bank = engine_generator.Bank(cylinders0, 0)
-    engine = engine_generator.Engine([bank], cylinders)
+    bank = engine_generation.Bank(cylinders0, 0)
+    engine = engine_generation.Engine([bank], cylinders)
     engine.fuel = fuel_type
     engine.engine_name = name
     engine.starter_torque = 800
@@ -187,4 +186,4 @@ def generate_inline_test_engine(cylinderCount, fuel_type, name):
     engine.write_to_file(strip_special_characters(engine.engine_name) + ".mr")
 
 if __name__ == "__main__":
-    generate_inline_test_engine(4, engine_generator.hydrogen, "I4 Test")
+    generate_inline_test_engine(4, engine_generation.hydrogen, "I4 Test")
