@@ -422,7 +422,7 @@ class Engine:
         for cylinder in self.firing_order:
             bank = self.get_cylinder_bank(cylinder)
             bank_angle = bank.bank_angle + 90
-            self.rod_journals[cylinder-1] = (-current_crank_angle) + bank_angle - tdc
+            self.rod_journals[cylinder] = (-current_crank_angle) + bank_angle - tdc
             current_crank_angle -= gap
 
     def cylinder_count(self):
