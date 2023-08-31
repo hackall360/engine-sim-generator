@@ -52,11 +52,16 @@ def generate_firing_order_inline(cylinders):
         return
     firing_order = []
 
-    for i in range(1, cylinders + 1, 2):
-        firing_order.append(i)
+    firing_order.append(0)
 
-    for i in range(2, cylinders + 1, 2):
-        firing_order.append(i)
+    for i in range(cylinders):
+        if i % 2 != 0 and i not in firing_order:
+            firing_order.append(i)
+        
+    for i in range(cylinders):
+        if i % 2 == 0 and i not in firing_order:
+            firing_order.append(i)
+
 
     return firing_order
 
@@ -66,7 +71,7 @@ def generate_firing_order_v(cylinders):
 
     left_bank = []
     right_bank = []
-    for i in range(1, cylinders + 1):
+    for i in range(cylinders):
         if i % 2 == 0:
             right_bank.append(i)
         else:
@@ -88,7 +93,7 @@ def generate_inline(cylinderCount, fuel_type):
     cylinders = generate_firing_order_inline(cylinderCount)
     cylinders0 = []
 
-    for i in range(1, cylinderCount + 1):
+    for i in range(cylinderCount):
         cylinders0.append(i)
     
     bank = engine_generator.Bank(cylinders0, 0)
@@ -110,7 +115,7 @@ def generate_inline(cylinderCount, fuel_type):
     print("CONFIGURING ENGINE... (LEAVE BLANK IF YOU WANT TO USE ENGINE'S DEFAULT VALUES)")
     
     for key, value in default_values.items():
-        user_input = input(f"{key}: ")
+        user_input = input(f"{key} DEFAULT VALUE({value}): ")
         if user_input:
             setattr(engine, key, user_input)
 
