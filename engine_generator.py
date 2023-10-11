@@ -312,9 +312,9 @@ class Vehicle:
 
 
 class Engine:
-    def __init__(self, banks, firing_order):
+    def __init__(self, banks, firing_order, fuel_type):
         self.banks = banks
-        self.fuel = gasoline_regular
+        self.fuel = fuel_type
         self.starter_torque = 70
         self.starter_speed = 500
         self.redline = 8000

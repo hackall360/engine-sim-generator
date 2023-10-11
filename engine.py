@@ -52,11 +52,16 @@ def generate_firing_order_inline(cylinders):
         return
     firing_order = []
 
-    for i in range(1, cylinders + 1, 2):
-        firing_order.append(i)
+    firing_order.append(0)
 
-    for i in range(2, cylinders + 1, 2):
-        firing_order.append(i)
+    for i in range(cylinders):
+        if i % 2 != 0 and i not in firing_order:
+            firing_order.append(i)
+        
+    for i in range(cylinders):
+        if i % 2 == 0 and i not in firing_order:
+            firing_order.append(i)
+
 
     return firing_order
 
@@ -66,7 +71,7 @@ def generate_firing_order_v(cylinders):
 
     left_bank = []
     right_bank = []
-    for i in range(1, cylinders + 1):
+    for i in range(cylinders):
         if i % 2 == 0:
             right_bank.append(i)
         else:
@@ -88,22 +93,32 @@ def generate_inline(cylinderCount, fuel_type):
     cylinders = generate_firing_order_inline(cylinderCount)
     cylinders0 = []
 
-    for i in range(1, cylinderCount + 1):
+    for i in range(cylinderCount):
         cylinders0.append(i)
     
     bank = engine_generator.Bank(cylinders0, 0)
     engine = engine_generator.Engine([bank], cylinders, fuel_type)
-    engine.engine_name = input("Engine name: ")
-    engine.starter_torque = int(input("Starter torque: "))
-    engine.crank_mass = int(input("Crank mass: "))
-    engine.bore = float(input("Cylinder bore: "))
-    engine.stroke = float(input("Cylinder stroke: "))
-    engine.chamber_volume = int(input("Chamber volume: "))
-    engine.rod_length = float(input("Cylinder rod length: "))
-    engine.simulation_frequency = int(input("Simulation frequency (default 1200): "))
-    engine.max_sle_solver_steps = int(input("Max sle solver steps (default 4): "))
-    engine.fluid_simulation_steps = int(input("Fluid simulation steps (default 4): "))
-    engine.idle_throttle_plate_position = float(input("Idle throttle plate position: "))
+    default_values = {
+    "engine_name": engine.engine_name,
+    "starter_torque": engine.starter_torque,
+    "crank_mass": engine.crank_mass,
+    "bore": engine.bore,
+    "stroke": engine.stroke,
+    "chamber_volume": engine.chamber_volume,
+    "rod_length": engine.rod_length,
+    "simulation_frequency": engine.simulation_frequency,
+    "max_sle_solver_steps": engine.max_sle_solver_steps,
+    "fluid_simulation_steps": engine.fluid_simulation_steps,
+    "idle_throttle_plate_position": engine.idle_throttle_plate_position
+    }
+
+    print("CONFIGURING ENGINE... (LEAVE BLANK IF YOU WANT TO USE ENGINE'S DEFAULT VALUES)")
+    
+    for key, value in default_values.items():
+        user_input = input(f"{key} DEFAULT VALUE({value}): ")
+        if user_input:
+            setattr(engine, key, user_input)
+
 
     engine.generate()
     engine.write_to_file(strip_special_characters(engine.engine_name) + ".mr")
@@ -117,17 +132,26 @@ def generate_v(cylinderCount, fuel_type):
 
     engine = engine_generator.Engine([bank0, bank1], cylinders, fuel_type)
     
-    engine.engine_name = input("Engine name: ")
-    engine.starter_torque = int(input("Starter torque: "))
-    engine.crank_mass = int(input("Crank mass: "))
-    engine.bore = float(input("Cylinder bore: "))
-    engine.stroke = float(input("Cylinder stroke: "))
-    engine.chamber_volume = int(input("Chamber volume: "))
-    engine.rod_length = float(input("Cylinder rod length: "))
-    engine.simulation_frequency = int(input("Simulation frequency (default 1200): "))
-    engine.max_sle_solver_steps = int(input("Max sle solver steps (default 4): "))
-    engine.fluid_simulation_steps = int(input("Fluid simulation steps (default 4): "))
-    engine.idle_throttle_plate_position = float(input("Idle throttle plate position: "))
+    default_values = {
+    "engine_name": engine.engine_name,
+    "starter_torque": engine.starter_torque,
+    "crank_mass": engine.crank_mass,
+    "bore": engine.bore,
+    "stroke": engine.stroke,
+    "chamber_volume": engine.chamber_volume,
+    "rod_length": engine.rod_length,
+    "simulation_frequency": engine.simulation_frequency,
+    "max_sle_solver_steps": engine.max_sle_solver_steps,
+    "fluid_simulation_steps": engine.fluid_simulation_steps,
+    "idle_throttle_plate_position": engine.idle_throttle_plate_position
+    }
+
+    print("CONFIGURING ENGINE... (LEAVE BLANK IF YOU WANT TO USE ENGINE'S DEFAULT VALUES)")
+    
+    for key, value in default_values.items():
+        user_input = input(f"{key}: ")
+        if user_input:
+            setattr(engine, key, user_input)
 
     engine.generate()
     engine.write_to_file(strip_special_characters(engine.engine_name) + ".mr")
@@ -187,4 +211,4 @@ def generate_inline_test_engine(cylinderCount, fuel_type, name):
     engine.write_to_file(strip_special_characters(engine.engine_name) + ".mr")
 
 if __name__ == "__main__":
-    generate_inline_test_engine(4, engine_generator.hydrogen, "I4 Test")
+    generate_custom_engine()
